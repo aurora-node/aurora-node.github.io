@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: #ffffff;
+  color: #E5281C;
+}
+
+header {
+  max-width: 1400px;
+  margin: 0 auto;              
+  padding: 22px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nav-bar Related */
+.navbar {
+  font-size: 30px;
+  text-decoration: none;
+  color: #f26457;
+  transition: transform 0.2s ease;
+}
+
+.navbar:hover {
+  transform: translateY(1px);
+}
+
+/* Main Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 60px 120px;
+}
+
+/* Margin for posts to have space between them*/
+.post {
+  margin-bottom: 50px;
+}
+
+/* Image */
+.post-layout > .post-image {
+  width: 50%;
+  margin-left: auto; 
+  display: block;
+  margin-top: -40px;
+}
+
+.post-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .post-layout > .post-image {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  header,
+  .container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  header,
+  .container {
+    padding: 20px;
+  }
+}
+
+/* Title and Text Related */
+/* h1, h2, p etc. */
+.post-title {
+  font-weight: 400;
+  font-size: clamp(48px, 6vw, 92px);
+  line-height: 1.05;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.1;
+  padding-top: 20px;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: clamp(24px, 2.5vw, 36px);
+  line-height: 1.2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+p, li {
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.6;
+  max-width: 65ch;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-family: 'Courier New', monospace;
+  color: #C61F17;
+}
+
+/* Make the UL's inside the paragraphs together */
+ul {
+  list-style-type: square;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+/* Color for links inside paragraphs. */
+p a {
+  color: #C61F17;
+}
+
+/* Color for links inside list items. */
+li a {
+  color: #C61F17;
+}
+
+/* Minimal hr */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #E5281C;
+  opacity: 0.3;
+  margin: 20px 0;
+  max-width: 65ch;
+}
+
+/* Smaller centered hr for small screens */
+@media (max-width: 600px) {
+  hr {
+  border: none;
+  height: 1px;
+  width: 20px;
+  background-color: #E5281C;
+  margin: 20px auto;
+  opacity: 0.3;
+  }
+}
+
+/* Code grey background to highlight snippets of code */
+code {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #c7254e;
+}
+
+/* Font size for Date/Tag beneath title */
+.post-meta {
+  font-size: 18px;
+}
+
+/* For my name in the end */
+.post-me a {
+  color: #E5281C;
+}
+
+.post-me {
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+/* Blog post colors */
+.blog-post {
+    text-decoration: none;
+    color: #e10600;
+}
+
+
+/* Back link in the bottom of blog-post articles. */
+.back-link {
+    margin-top: 30px;
+    text-align: left;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.1;
+    padding-top: 20px;
+}
+
+/* Back link styled with underline and color */
+.back-link a {
+    text-decoration: underline;
+    color: #E5281C; 
+}
+
+figcaption {
+  color: #666;
+  margin-top: 0.5rem;
+  text-align: center;
+}

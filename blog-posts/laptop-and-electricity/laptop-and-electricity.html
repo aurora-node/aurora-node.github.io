@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uplink</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="/index.html" class="navbar">Uplink</a>
+  <a href="/about/about.html" class="navbar">About</a>
+</header>
+
+<div class="container">
+
+  <section class="post">
+    <div class="post-layout">
+
+      <div>
+        
+          <h1 class="post-title">
+            A Laptop, Electricity-<br>
+            and an Internet Connection
+          </h1>
+        
+        <div class="post-meta">
+          16/02/2026 <br>
+          Tech
+        </div>
+      </div>
+
+      <div class="post-image">
+        <img src="/blog-posts/laptop-and-electricity/images/it-is-fun.png"
+             alt="Portrait">
+      </div>
+
+    </div>
+  
+
+    <h1>
+        That's all you need to have fun!
+    </h1>
+
+    <h2>
+        A small back-story
+    </h2>
+
+    <p>
+        The following blog-post is about the importance of having a good platform to work on when you’re into computers. 
+        I remember when I was growing up, my first experience with computers was an old IBM running Windows XP that I 
+        really liked messing with by clicking random things in the screen to see what they would do.
+    </p>
+
+    <p>
+        I clearly remember my Dad system restoring it or something along those lines when I messed up a tad bit too much. 
+        I continued messing with computers but I never really carried through to get proficient till I enrolled into college 
+        which was quite unexpected as I did not exactly plan this beforehand but here I am graduating in a few months! 
+        I cannot thank enough the support I have gotten from everyone whether that is from my parents, my professor or my beloved girlfriend.
+    </p>
+
+    <hr>
+
+    <h2>
+        Distro-hopping and how I found what I was looking for
+    </h2>
+
+    <p>
+        So let's get a bit technical and cut through the chase. Not super technical but let's see what's the fuss about distro-hopping and how it played a huge role in finding what I deem as a sweet operating system that is my little fighter which never gives up.
+    </p>
+
+    <p>
+        Ever since I owned a computer I always found myself abandoning Windows and tinkering with some Linux distribution but ultimately I never committed. In the era of COVID lock-downs I spent an unhealthy amount of time endlessly customizing or as they call it “ricing” my distro which at the time was Arch.
+    </p>
+
+    <p>
+        When I enrolled into college I found myself looking for workflows that are Linux inspired. I updated via the terminal with <a href="https://github.com/microsoft/winget-cli" target="_blank">winget</a> and installed a tiling windows manager called <a href="https://github.com/glzr-io/glazewm" target="_blank">GlazeWM</a> to maximize my productivity as I had a small laptop monitor to work with. Slowly but gradually my opinion cemented that Windows has become a bad operating system so I said my goodbyes.
+    </p>
+
+    <p>
+        I snatched a relatively new distro at the time called <a href="https://omarchy.org/" target="_blank">Omarchy</a>, an opinionated setup for Arch-<a href="https://hypr.land/" target="_blank">Hyprland</a> by DHH and his team. Initially, the workflow was amazing but ultimately the constant updates and the ever so evolving environment proved futile. Constant change and stuff breaking postpones important work.
+    </p>
+
+    <p>
+        So I wiped them and got myself an image-based approach that of <a href="https://getaurora.dev/en" target="_blank">Aurora</a> from Universal Blue and I have never had so much fun with an operating system before. But why Aurora and not something else?
+    </p>
+
+    <hr>
+
+    <h2>
+        What's a good platform?
+    </h2>
+
+    <p>
+        I believe that a good platform to work on your computer is a system that does it's job and gets out of your way. You open it, do what you want to do and close it. No strings attached. A user needs to have an operating system that revolves around <b>getting things done</b>.
+    </p>
+
+    <p>
+        <a href="https://fedoraproject.org/atomic-desktops/" target="_blank">Fedora</a> is a mature solution for image-based distributions. Based on Fedora, <a href="https://universal-blue.org/" target="_blank">Universal Blue</a> followed Fedora's image footsteps and they have released their own images as well. An atomic distro uses an image to boot the operating system, updates with a new image atomically and ultimately has roll-back images to travel backwards in case of an emergency. Pretty cool right? Now, stability also plays a vital role to get things done and these distros are good at it. User applications are logically separated from the system with flatpaks, brew for command line apps and development workflows are containerized to promote stability.
+    </p>
+
+    <hr>
+
+    <h2>
+        A small dive into Ublue's Aurora
+    </h2>
+
+    <p>
+        Aurora is based on the desktop environment of KDE. As we previously saw it uses images to boot, update and perform rollbacks. With KDE there are a multitude of different customization options which is a huge bonus. You can make multiple desktops and quickly switch between them with shortcuts and flick applications around easily. KDE doesn’t have OOTB support for tiling windows but you can get close enough in a way with third-party plug-ins.
+    </p>
+
+    <p>
+        Aurora caters to developers by offering a specific image you can rebase to, named Aurora DX. DX stands for Developer Experience and oh boy is it a blast!
+    </p>
+
+    <ul>
+        <li>
+             It offers baked support for Docker, Podman and Visual Studio Code ready to kick off with Dev Containers.
+        </li>
+        <li>
+            When opening a terminal you're already equipped with a wonderful command called <a href="https://docs.getaurora.dev/guides/basic-usage/#using-ujust-in-aurora"  target="_blank">ujust</a> that the team has went above and beyond with it. For example, you can simply <a href="https://docs.getaurora.dev/dx/aurora-dx-intro#jetbrains" target="_blank">install the JetBrains toolbox with ujust</a> and go along your way with your projects.
+        </li>
+        <li>
+            <a href="https://brew.sh/" target="_blank">Homebrew</a> is eagerly waiting in the corner to install your most loved apps; <a href="https://github.com/fastfetch-cli/fastfetch" target="_blank">fastfetch</a>, <a href="https://github.com/jesseduffield/lazydocker" target="_blank">lazydocker</a>, <a href="https://github.com/aristocratos/btop" target="_blank">btop</a> and whatever else you choose!
+        </li>
+        <li>
+            GUI apps are installed with flatpaks from a store named <a href="https://github.com/kolunmi/bazaar" target="_blank">Bazaar</a> which is polished with all the apps you need!
+        </li>
+        <li>
+            DX offers many goodies for <a href="https://docs.getaurora.dev/guides/local-ai" target="_blank">localized AI</a> as well. With <a href="https://ramalama.ai/" target="_blank">ramalama</a> you can quickly download AI models locally and run them dockerized. You can even create a <a href="https://github.com/containers/ramalama/blob/main/docs/ramalama-rag.1.md" target="_blank">RAG</a> with some of your books!
+        </li>
+        <li>
+            <a href="https://containertoolbx.org/" target="_blank">Toolbx</a> (yes the “o” is not there) built on top of Podman is there to create toolboxes with all your favorite tools from your distro of choice. You want to <code>pacman -S [package]</code>? You can certainly do so and then seamlessly access your host from that toolbx as well! No need to bloat your host with packages!
+        </li>
+    </ul>
+
+    <p>
+        As you can see Aurora offers amazing tools to truly push the whole mindset of <b>getting things done in a beautiful way</b>. If it wasn't for this platform I wouldn't have been able to have so much fun when creating.
+    </p>
+
+    <hr>
+
+    <h2>
+        Aurora Adventures
+    </h2>
+
+    <p>
+        I have ventured into a lot of different stuff since I got Aurora up and running. Some of them deserve their own blog-post while others don't.
+    </p>
+
+    <h2>
+        Springboot Lost and Found Application
+    </h2>
+
+    <p>
+        When I first got baptized with Java after my Python course I was a bit dumbfounded with all of the new stuff I got introduced to and I didn't like the initial verbosity of the language. Fast forward a year or so, after enrolling to another course which was about Spring, I quickly fell in love with how rules are enforced in a statically typed language like Java.
+    </p>
+
+    <p>
+        My final assignment was to create an application for users to be able to submit lost and found items with a whole bunch of functionality behind the scenes. I won't be diving into it as this deserves a blog-post of it's own or rather maybe a whole series about spring.
+    </p>
+
+    <p>
+        But, here is a rough collage of how the application turned out to be at least the front part of it.
+    </p>
+
+    <div class="post-image">
+            <figure> 
+                <img src="/blog-posts/laptop-and-electricity/images/spring-app-bnw-showcase.png" alt="Springboot front-end app collage">
+                <figcaption>
+                    Springboot Showcase
+                </figcaption>
+            </figure> 
+    </div>
+
+    <h2>
+        Ramalama and RAGs
+    </h2>
+
+    <p>
+        Ramalama gets an honorable mention. You can simply pull and run containerized models.
+    </p>
+
+    <p>
+        First, you need to pull an image of a model.
+    </p>
+
+    <p>
+        <code>
+            ramalama pull llama3.2
+        </code>
+    </p>
+
+    <p>
+        Afterwards, you can simply run it in the terminal like so.
+    </p>
+
+    <p>
+        <code>
+            ramalama run llama3.2
+        </code>
+    </p>
+
+    <p>
+        💡Hint. You can also serve a model.
+    </p>
+
+    <p>
+        <code>
+            ramalama serve llama3.2 --port 8080
+        </code>
+    </p>
+
+    <p>
+        Additionally, you can <a href="https://github.com/containers/ramalama/blob/main/docs/ramalama-rag.1.md" target="_blank">create RAGs</a> and attach them to your local model.
+    </p>
+
+    <p>
+        <code>
+            ramalama rag "/home/directory-to-your-files" name-of-your-rag <br><br>
+            ramalama run --rag name-of-your-rag llama3.2
+        </code>
+    </p>
+
+    <p>
+        Here is how that looks like with a simple query of asking the chapter contents of a book!
+    </p>
+
+    <div class="post-image">
+            <figure> 
+                <img src="/blog-posts/laptop-and-electricity/images/rag-query-ramalama.png" alt="Ramalama RAG query.">
+                <figcaption>
+                    Ramalama RAG Query
+                </figcaption>
+            </figure> 
+    </div>
+
+    <hr>
+
+    <h2>
+        Primer on PostGIS and Geospatial Data
+    </h2>
+
+    <p>
+        Going into databases briefly, I discovered that there are specific extenders for databases that support geospatial data. <a href="https://hub.docker.com/r/postgis/postgis" target="_blank">PostGIS</a> which is a geographical information system has the capability of extending PostgreSQL to support geospatial data such as points, lines and other more complex data types.
+    </p>
+
+    <p>
+        On the bottom part of the image you can see lazydocker that is used to run PostGIS dockerized. Contrary, on the top, two windows of <a href="https://qgis.org/" target="_blank">QGIS</a> connect to the database that in turn let's us plot some geospatial points with an easy to use interface.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/laptop-and-electricity/images/postgis-showcase.png" alt="PostGIS showcase with points plotted and lazydocker at the bottom.">
+            <figcaption>
+                PostGIS and LazyDocker
+            </figcaption>
+        </figure> 
+    </div>
+
+    <hr>
+
+    <h2>
+        Toolbx Experiments
+    </h2>
+
+    <p>
+        I wanted to quickly figure out a way to run <a href="https://gcc.gnu.org/" target="_blank">g++</a> on my host but I figured out it wasn't there so I learned how to use toolboxes with Aurora.
+    </p>
+
+    <p>
+        You can quickly create one using the following command that pulls a fedora-toolbox image.
+    </p>
+
+    <p>
+        <code>
+            toolbox create
+        </code>
+    </p>
+
+    <p>
+        Enter the toolbox.
+    </p>
+
+    <p>
+        <code>
+            toolbox enter
+        </code>
+    </p>
+
+    <p>
+        When you're in a toolbox you can install your desired tools and have seamless access to your host as seen below.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/laptop-and-electricity/images/toolbox-experiment.png" alt="Showcasing toolbox terminal with VIM on the side.">
+            <figcaption>
+                Fedora Toolbox seamlessly acessing host
+            </figcaption>
+        </figure> 
+    </div>
+
+    <hr>
+
+    <h2>
+        ARM Assembly Endeavors
+    </h2>
+
+    <p>
+        I want to mention <a href="https://x.com/lauriewired" target="_blank">LaurieWired</a> as her short video series on YouTube inspired me to pick up Assembly and start learning the basics.
+    </p>
+
+    <p>
+        Learning about registers and their special purpose variants, software interrupts and program counters shine a whole new world!
+    </p>
+
+    <p>
+        Taking into account the following <a href="https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm-32_bit_EABI" target="_blank">documents</a>:
+    </p>
+
+    <ul>
+        <li>
+            We create a simple program that exits.
+        </li>
+        <li>
+            We use the syscall name of “exit”.
+        </li>
+        <li>
+             It uses two (2) registers respectively; <code>r0</code> and <code>r7</code>.
+        </li>
+        <li>
+            The exit syscall returns <code>arg0 (%r0)</code> so we can put our desired error code there with <code>mov r0, #42</code>.
+        </li>
+        <li>
+             <code>r7</code> is a special purposed register. We pass the value <code>1</code> to it that is going to be used by the kernel to call a system call that we want to.
+        </li>
+    </ul>
+
+    <p>
+        💡MOV takes the destination register <code>&lt;Rd&gt;</code> which in turn takes an immediate value with the syntax of <code>#&lt;value&gt;</code>. 
+    </p>
+
+    <p>
+        Lastly, we use a SWI (Software Interrupt) with the syntax of <code>swi 0</code>.
+    </p>
+
+    <p>
+        Here is the initial program in <a href="https://cpulator.01xz.net/" target="_blank">CPUlator</a>, an online ARM Assembly Emulator.</p>
+    </p>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/laptop-and-electricity/images/cpulator-initial-program.png" alt="A simple ARM Assembly program in an emulator, online.">
+            <figcaption>
+                Initial ASM program in CPUlator
+            </figcaption>
+        </figure>  
+    </div>
+
+    <p>
+        💡 Notice below the red highlighted areas. <code>r0</code> has taken the value of <code>42</code> and <code>r7</code> the value of <code>1</code>. The program counter(pc) has incremented to the value of <code>8</code>.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/laptop-and-electricity/images/cpulator-step-over.png" alt="A simple ARM Assembly program in an emulator, online, showing step-over.">
+            <figcaption>
+                Showcasing step over steps
+            </figcaption>
+        </figure> 
+    </div>
+
+    <hr>
+
+    <h2>
+        LazyVim!
+    </h2>
+
+    <p>
+        This is more of a quick shout-out of the text editor Vim that I always found out cool to use. Not everyone likes it's keybindings or how you quit! But, <a href="https://www.lazyvim.org/" target="_blank">LazyVim</a> is a very easy way to quickly setup NeoVim to have a file explorer inside it, tabs and an integrated terminal to quickly access when you need to. It has lots of useful documentation and it offers many plug-ins to consume!
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/laptop-and-electricity/images/lazyvim.png" alt="LazyVim Showcase.">
+            <figcaption>
+                LazyVim with Explorer and Terminal open
+            </figcaption>
+        </figure> 
+    </div>
+
+    <hr>
+
+    <h2>
+        Final Thoughts
+    </h2>
+
+    <p>
+        The goal of writing is to accompany learning and an interest to write about tech. I'm on my final stretch to graduation so I might as well document and write about technology. Writing and persevering knowledge is always a good idea!
+    </p>
+
+    <hr>
+
+    <h2>
+        Operating Systems
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://malix-labs.github.io/Awesome-Atomic/" target="_blank">Awesome Atomic</a>
+        </li>
+        <li>
+            <a href="https://www.fedoraproject.org/atomic-desktops/" target="_blank">Fedora Atomic Desktops</a>
+        </li>
+        <li>
+            <a href="https://www.researchgate.net/publication/370528248_Immutable_Operating_Systems_A_Survey" target="_blank">Immutable Operating Systems: A Survey</a>
+        </li>
+        <li>
+            <a href="https://omarchy.org/" target="_blank">Omarchy</a>
+        </li>
+        <li>
+            <a href="https://universal-blue.org/" target="_blank">Universal Blue</a>
+        </li>
+    </ul>
+
+    <h2>
+        Software
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://github.com/glzr-io/glazewm" target="_blank">GlazeWM</a>
+        </li>
+        <li>
+            <a href="https://brew.sh/" target="_blank">Homebrew</a>
+        </li>
+        <li>
+            <a href="https://www.lazyvim.org/" target="_blank">LazyVim</a>
+        </li>
+        <li>
+            <a href="https://postgis.net/" target="_blank">PostGIS</a>
+        </li>
+        <li>
+            <a href="https://qgis.org/" target="_blank">QGIS</a>
+        </li>
+        <li>
+            <a href="https://ramalama.ai/" target="_blank">Ramalama</a>
+        </li>
+        <li>
+            <a href="https://containertoolbx.org/" target="_blank">Toolbx</a>
+        </li>
+    </ul>
+
+    <h2>
+        Miscellaneous
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/playlist?list=PLn_It163He32Ujm-l_czgEBhbJjOUgFhg" target="_blank">Practical ARM Assembly Tutorial Series</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <p>
+        That's all folks. Thanks for reading!
+    </p>
+
+
+    <div class="back-link">
+        <a href="/index.html">Back</a>
+    </div>
+    
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

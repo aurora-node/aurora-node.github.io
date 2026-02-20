@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uplink</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="/index.html" class="navbar">Uplink</a>
+  <a href="/about/about.html" class="navbar">About</a>
+</header>
+
+<div class="container">
+
+  <section class="post">
+    <div class="post-layout">
+
+      <div>
+          <h1 class="post-title">
+            Localized AI in<br>
+            Containerized<br>
+            Fashion
+          </h1>
+        </a>
+
+        <div class="post-meta">
+          17/02/2026 <br>
+          Tech
+        </div>
+      </div>
+
+      <div class="post-image">
+        <img src="/blog-posts/localized-ai/images/localized-ai.png"
+             alt="Portrait">
+      </div>
+
+    </div>
+  
+
+    <h2>
+        Ramalama, Local AI Models and RAGs
+    </h2>
+
+    <p>
+        We can simply run a local AI model to tinker with it using ramalama. It is really easy to use this tool as you will see below. In order to use a model locally we first need to pull it and then run it. Easy enough right?
+    </p>
+
+    <p>
+        <code>
+            ramalama pull llama3.2<br>
+            ramalama run llama3.2
+        </code>
+        
+    </p>
+
+    <br>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/localized-ai/images/simple-query-with-llama.png" alt="Simple query using llama3.2. User says hi and AI responds.">
+        </figure> 
+        <figcaption>
+            Simple query with llama3.2
+        </figcaption>
+    </div>
+
+    <p>
+        Now, to make it a bit more interesting we can also use ramalama to <a href="https://github.com/containers/ramalama/blob/main/docs/ramalama-rag.1.md" target="_blank">create our own RAG</a> to complement a model. Firstly, we need to find what files to use. I decided to use a singular Java book I had laying around to test it out.
+    </p>
+
+    <p>
+        We create a RAG by specifying it's name and the directory the file lives in. After, we attach the RAG to llama3.2 and run it as seen below.
+    </p>
+
+     <p>
+        <code>
+            ramalama rag "/home/k0st1e/pdf" tiny-rag<br>
+            ramalama run --rag tiny-rag llama3.2
+        </code>
+        
+    </p>
+
+    <br>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/rag-query.png" alt="Simple query using llama3.2 with a RAG. User asks for book chapters and the bot responds.">
+        </figure>
+        <figcaption>
+            Querying to fetch chapters in the Java book.
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Python and Development Containers with Visual Studio Code
+    </h2>
+
+    <p>
+        As the previous way of running localized AI with a RAG attached to it was not hands-on with coding, I decided to take it a step further and look into the library of <a href="https://docs.langchain.com/" target="_blank">langchain</a> and how to use Dev Containers.
+    </p>
+
+    <p>
+        Dev Containers is an <a href="https://code.visualstudio.com/docs/devcontainers/tutorial#_install-the-extension" target="_blank">easy way to quickly setup</a> an environment to code in a docker container. It provides suggested images for a plethora of different programming languages.
+    </p>
+
+    <hr>
+
+    <h2>
+        Bridging Ramalama to Python in Visual Studio Code
+    </h2>
+
+    <p>
+        Before we begin coding, we first need to serve llama3.2 to be able to access and use it with Python via Visual Studio Code.
+    </p>
+
+    <ul>
+        <li>
+            Serve llama3.2 on port 8080.
+        </li>
+    </ul>
+
+    <p>
+        <code>
+            ramalama serve llama3.2 --port 8080
+        </code>
+    </p>
+
+    <ul>
+        <li>
+            Initialize a chat model.
+        </li>
+        <li>
+            Provide the required provider and URL.
+        </li>
+        <li>
+            <code>model</code> and <code>api_key</code> are "placeholders". We can put anything there but it is a good idea to write the model we are using so we can remember.
+        </li>
+        <li>
+            Interact with the model using <code>.invoke("text-goes-here").</code>
+        </li>
+        <li>
+            <a href="https://docs.langchain.com/oss/python/langchain/models#base-url" target="_blank">Documentation on local AI models can be found on langchain's website.</a>
+        </li>
+    </ul>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/vscode-containers.png" alt="Visual Studio Code container extension.">
+        </figure>
+        <figcaption>
+            Visual Studio Code's Dev Container Extension
+        </figcaption>
+    </div>
+
+    <br>
+
+    <br>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/model-creation-invoking.png" alt="AI model creation and invoking it.">
+        </figure>
+        <figcaption>
+            Model creation and invoking.
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Loading and Converting Documents into Chunks
+    </h2>
+
+    <p>
+        Now that we have a local model that is being served, we can continue and write some small snippets of Python to do two simple jobs; loading some documents and splitting them into chunks.
+    </p>
+
+    <ul>
+        <li>
+            Create a Dev Container for Python.
+        </li>
+        <li>
+            Write an empty list for our documents.
+        </li>
+        <li>
+            Load each document with the Loader into the list.
+        </li>
+        <li>
+            Create a Text Splitter to split the documents into chunks.
+        </li>
+        <li>
+            As you can see the documents were split into 94 chunks.
+        </li>
+    </ul>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/document-loading-splitting.png" alt="Documents loading and splitting.">
+        </figure>
+        <figcaption>
+            Documents loading and splitting into chunks.
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Embeddings and the Vector Store
+    </h2>
+
+    <p>
+        In order to leverage our documents we need to create embeddings from them, store them as vectors and ultimately create an agent that we can use to prompt and get answers. I looked into Hugging Face and used sentence transformers to create embeddings.
+    </p>
+
+    <ul>
+        <li>
+            First we create embeddings using Hugging's Face sentence transformer "MiniLM L6 v2".
+        </li>
+        <li>
+            Then we create a Vector Store in memory with said embeddings.
+        </li>
+        <li>
+            Lastly, we create document id's and print to see them.
+        </li>
+    </ul>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/embeddings-vector-store.png" alt="Embedding and the vector store">
+        </figure>
+        <figcaption>
+            Embeddings and Vector Store.
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Tool and Agent Creation
+    </h2>
+
+    <p>
+        Moreover, since we now have a vector store, we can now create a tool that will perform similarity searches and help us guide our agent when we perform queries.
+    </p>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/langchain-tool-dec.png" alt="Tool creation for an agent">
+        </figure>
+        <figcaption>
+            Langchain's Tool Decorator - A function that performs similarity searches.
+        </figcaption>
+    </div>
+
+    <p>
+        Recapping, we have loaded our documents, created embeddings, stored them into a vector store and created a tool to retrieve context. The only things left to do are to create an agent using a model(llama3.2), leverage the tool and run a test query with the agent.
+    </p>
+
+    <ul>
+        <li>
+            <code>tools</code> is what we previously defined, the function that performs similarity searches from the retrieved documents.
+        </li>
+        <li>
+            <code>prompt</code> is the system prompt the agent needs. In this case, we tell the agent that it has access to a tool and to answer questions from the retrieved context.
+        </li>
+        <li>
+            <code>model</code> is readily available as we have already used it in the beginning.
+        </li>
+    </ul>
+
+    <p>
+        The PDFs I used for the agent were some guides that have indicative learning sections hence the prompt. As you can see, the agent replies with said indicative reading books that are in the guides.
+    </p>
+
+    <div class="post-image">
+        <figure>
+            <img src="/blog-posts/localized-ai/images/agent-creation-and-bot-responding.png" alt="Agent creation and the results of a user query">
+        </figure>
+        <figcaption>
+            Agent Creation and Results of a Query
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        References
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://docs.getaurora.dev/guides/system-requirements" target="_blank">Aurora Documentation</a>
+        </li>
+        <li>
+            <a href="https://github.com/containers/ramalama/blob/main/docs/ramalama.1.md" target="_blank">Ramalama RAG Docs</a>
+        </li>
+        <li>
+            <a href="https://docs.langchain.com/oss/python/langchain/models#base-url-or-proxy" target="_blank">Langchain Base URL Docs</a>
+        </li>
+        <li>
+            <a href="https://docs.langchain.com/oss/python/langchain/rag" target="_blank">Langchain RAG Agent</a>
+        </li>
+        <li>
+            <a href="https://docs.langchain.com/oss/python/integrations/text_embedding/huggingfacehub" target="_blank">Langchain &amp; Hugging Face</a>
+        </li>
+        <li>
+            <a href="https://code.visualstudio.com/docs/devcontainers/tutorial#_install-the-extension" target="_blank">Dev Containers</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <p>
+        That's all folks. Thanks for reading!
+    </p>
+
+    <div class="back-link">
+        <a href="/index.html">Back</a>
+    
+  </section>
+
+</div>
+
+</body>
+</html>
