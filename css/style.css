@@ -59,6 +59,23 @@ header {
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Smaller images for the posts */
+.post-layout > .blog-image {
+  width: 30%;
+  margin-left: auto; 
+  display: block;
+  margin-top: -40px;
+}
+
+.blog-image img {
+  width: 60%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
 @media (max-width: 1024px) {
   .post-layout > .post-image {
     width: 100%;

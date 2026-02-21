@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uplink</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="/index.html" class="navbar">Aurora Node</a>
+  <a href="/about/about.html" class="navbar">About</a>
+</header>
+
+<div class="container">
+
+  <section class="post">
+    <div class="post-layout">
+
+      <div>
+          <h1 class="post-title">
+            Raspberry Pi<br>
+            Shenanigans
+          </h1>
+        </a>
+
+        <div class="post-meta">
+          21/02/2026<br>
+          Tech
+        </div>
+      </div>
+
+      <div class="post-image">
+        <img src="/blog-posts/raspberry-pi-shenanigans/images/raspberry-pi-setup.jpg"
+             alt="Raspbery Pi Setup with a cable.">
+      </div>
+
+    </div>
+  
+
+    <h2>
+        Moisture Sensors
+    </h2>
+
+    <p>
+      In the summer of '25 in academia we were looking into IoT and experimenting with various things. As I had a spare raspberry laying around, I created a simple program to monitor my Aloe plant. Through research I found out that resistive moisture sensors tend to corrode faster so I bought a capacitive moisture sensor from a local shop. It's manufactured by Grove and the <a href="https://wiki.seeedstudio.com/Grove-Capacitive_Moisture_Sensor-Corrosion-Resistant/" target="_blank">documentation</a> of the sensor is a great place to get started.
+    </p>
+      
+    <p>
+      Additionally, I also bought a HAT for my Pi. A HAT or shield is a a component that acts like a hat on your Raspberry Pi. It simply attaches on top of the Pi using the GPIO pins as seen below in the picture. Grove offers <a href="https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/" target="_blank">documentation</a> for the Base Hat as well. 
+    </p>
+
+    <p>
+      After setting up everything together, I connected the sensor to <code>A0</code> of the HAT in order to read analog signals from the sensor.
+    </p>
+
+    <br>
+
+    <div class="blog-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/raspberry-and-moisture-sensor.png" alt="A raspberry pi setup with a hat that a moisture sensor is connected to.">
+        </figure> 
+        <figcaption>
+            Raspberry Pi and the Moisture Sensor
+        </figcaption>
+    </div>
+
+    <br>
+
+    <h2>
+        Using the Sensor with Python
+    </h2>
+
+    <p>
+        The program is rather simple. We import <code>time</code>, <code>numpy</code> and <code>ADC</code> from the <code>grove.adc</code> library. Afterwards, we create an <code>adc</code> to use it in a loop that reads the sensor that in turn maps it to readable friendly values. It sleeps between readings to send less data as a reading every second is adequate for an experiment. 
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-moisture-program.png" alt="A python program that is used in order to take readings from a moisture sensor.">
+        </figure> 
+        <figcaption>
+            Python Script of Moisture Sensor
+        </figcaption>
+    </div>
+
+    <p>
+        The sensor initially is dry. When the sensor is submerged into a glass of water, the reading instantaneously jumps to a value of almost a hundred. In the last lines the sensor was wiped with a paper towel.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/moisture-sensor-in-glass-of-water.png" alt="The sensor is submerged intro a glass of water to test sensor readings.">
+        </figure> 
+        <figcaption>
+            Sensor Testing with Glass of Water
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Incorporating an Aloe Plant
+    </h2>
+
+    <p>
+        Beneath you can see the setup with a plant of Aloe.
+    </p>
+
+    <div class="blog-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-with-aloe-setup.png" alt="An alloy plant setup with raspberry pi.">
+        </figure> 
+        <figcaption>
+            Alloy and Pie Setup
+        </figcaption>
+    </div>
+
+    <p>
+        When the plant is watered the sensor jumps instantly to a high moisture reading when it detects water and starts gradually decaying to a lower number. After roughly five (5) minutes the value had dropped to a reading of approximately <code>60</code>.
+    </p>
+
+    <div class="blog-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/watering-alloy-readings.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
+        </figure> 
+        <figcaption>
+            Readings after Watering the Alloy
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Reviving the Pi for a Learning Platform
+    </h2>
+
+    <p>
+        I wanted to be able to have a bare-bones Linux platform to interact with it using SSH from my workstation. I went ahead and installed the recommended OS for Raspberry called Raspbian which you can easily do so with an application named <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a>.
+    </p>
+
+    <p>
+        This time I encountered a little problem though. When installing an OS with that particular application there is an option to enter additional information such as your home's Wi-Fi internet SSID, credentials and SSH options for headless setups.
+    </p>
+
+    <p>
+        SSH setup unfortunately did not work and after skimming through some forums I found out you can simply provide a file named <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#remote-access" target="_blank">userconf</a> into the boot partition with the username and password which ultimately proved to be a success!
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/fastfetch-on-both-devices.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
+        </figure> 
+        <figcaption>
+            A Slice of Pie
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Post-installation and Docker
+    </h2>
+
+    <p>
+        After successfully accessing the Pi via my laptop, I installed various little tools such as vim, homebrew and helpful terminal tools to make my life easier. Docker installation was a breeze as Docker provides an installation method of a "<a href="https://docs.docker.com/engine/install/fedora/#install-using-the-convenience-script" target="_blank">Convenience Script</a>". Although, running scripts off the internet is never a good idea so caution is needed. Lastly, I configured to run Docker without root privileges and using <code>systemctl</code> I altered the service to run when the the Pie boots. 
+    </p>
+
+    <p>
+        I went ahead and used compose to create a simple setup of MySQL and phpMyAdmin as seen below. Documentation on how to setup compose with MySQL and phpMyAdmin can be found on Docker Hub which is linked at the end of the post! 
+    </p>
+
+    <p>
+        <code>💡</code> You can run compose detached to continue using the terminal with the small flag of <code>-d</code>!
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/raspberry-pi-shenanigans/images/docker-compose-on-pi.png" alt="Docker compose is showcased along with a database running.">
+        </figure> 
+        <figcaption>
+            Docker Compose
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        Kubernetes and Future Learning
+    </h2>
+
+    <p>
+        I have always wondered what Kubernetes is about as I had stumbled upon that name a handful of times when I was initially learning about Docker but I didn't really read anything about it until now. 
+    </p>
+
+    <p>
+        I skimmed around the internet and found out about k3s which is a kubernetes distribution suited for IoT. Although for learning purposes it would be better to have a cluster of Pies to learn better. As such I will be experimenting with Kubernetes in my laptop to learn the inner workings.
+    </p>
+
+    <hr>
+
+    <h2>
+        References
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://wiki.seeedstudio.com/Grove-Capacitive_Moisture_Sensor-Corrosion-Resistant/" target="_blank">Grove Capacity Sensor Documentation</a>
+        </li>
+        <li>
+            <a href="https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/" target="_blank">Grove Base Hat Documentation</a>
+        </li>
+        <li>
+            <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#remote-access" target="_blank">Raspberry Pi Remote Access Documentation</a>
+        </li>
+        <li>
+            <a href="https://docs.docker.com/engine/install/fedora/#install-using-the-convenience-script" target="_blank">Convenience Script Documentation</a>
+        </li>
+        <li>
+            <a href="https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user" target="_blank">Docker Post Installation (systemctl + non-root)</a>
+        </li>
+        <li>
+            <a href="https://hub.docker.com/_/mysql" target="_blank">Docker mysql Image</a>
+        </li>
+        <li>
+            <a href="https://hub.docker.com/_/phpmyadmin" target="_blank">Docker phpmyadmin Image</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <p>
+        That's all folks. Thanks for reading!
+    </p>
+
+    <div class="back-link">
+        <a href="/index.html">Back</a>
+    
+  </section>
+
+</div>
+
+</body>
+</html>
