@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: no
+    environment:
+      # Database Name
+      POSTGRES_DB: postgres
+      # Database User
+      POSTGRES_USER: postgres
+      # Database Password
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      # Volume mounts to my dockerized folder.
+      - ./data:/var/lib/postgresql/data
+    ports:
+      # Expose to port 5432.
+      - '5432:5432'
+
+  pgadmin4:
+    image: elestio/pgadmin:latest
+    restart: no
+    environment:
+      # Email for pgadmin
+      PGADMIN_DEFAULT_EMAIL: postgres@test.com
+      # Password
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      # Expose to port 8080.
+      - "8080:8080"
+    volumes:
+      # Volume lives inside my dockerized folder.
+      - ./servers.json:/pgadmin4/servers.json

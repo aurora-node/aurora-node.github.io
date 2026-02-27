@@ -1,11 +1,17 @@
-## Tech-Blog "Aurora Node"
+## Aurora Node
 
-A small static set of pages featuring tech-blog posts in the journey of exploring CS!
+A small static set of pages featuring byte sized posts in the journey of exploring CS!
 
 
 ## Bloggings
 
-* 21-02-2026: [Raspberry Pi Shenanigans]()
+* 27-02-2026: [Spring APIs ft. cats!](https://aurora-node.github.io/blog-posts/spring-api-cats/spring-api-cats.html)
+    * PostgreSQL and pgAdmin4 Dockerized.
+    * A POST Request in Spring.
+    * Deploying.
+    * Testing APIs.
+
+* 21-02-2026: [Raspberry Pi Shenanigans](https://aurora-node.github.io/blog-posts/raspberry-pi-shenanigans/raspberry-pi-shenanigans.html)
     * Moisture Sensors.
     * HATs for the Pi
     * Measuring Moisture Readings.

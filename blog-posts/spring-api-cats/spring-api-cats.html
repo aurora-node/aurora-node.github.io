@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spring API Cats</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <a href="/index.html" class="navbar">Aurora Node</a>
+  <a href="/about/about.html" class="navbar">About</a>
+</header>
+
+<div class="container">
+
+  <section class="post">
+    <div class="post-layout">
+
+      <div>
+          <h1 class="post-title">
+            Spring APIs ft. cats!
+          </h1>
+        </a>
+
+        <div class="post-meta">
+          27/02/2026<br>
+          Tech
+        </div>
+      </div>
+
+      <div class="post-image">
+        <img src="/blog-posts/spring-api-cats/images/cat-spring.jpg"
+             alt="Me and a cat chilling.">
+      </div>
+
+    </div>
+
+    <h2>
+        Docker, Docker, Docker!
+    </h2>
+
+    <p>
+        As a precursor let's get Docker out of the way. It's funny that I always write about Docker so much but I really like the whole workflow around it. I decided to re-organize my files as it was a clutter.
+    </p>
+
+    <p>
+        It is a lot more coherent now with JetBrains projects in their respective folders and compose files along with volumes living in a folder all together. I guess I am collecting databases now. 
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <img src="/blog-posts/spring-api-cats/images/dolphin-files.png" alt="Dolphin file explorer showcasing different directories with colorful custom icons.">
+        </figure> 
+        <figcaption>
+            Dolphin with Custom Icons
+        </figcaption>
+    </div>
+
+    <p>
+        Initially for the spring app, there was H2 usage but ultimately I wanted to deploy the app so I migrated to PostgreSQL in the end. Additionally, it will prove useful in the future as I will be using PostgreSQL and possibly PostGIS for a bigger project and Heroku makes it easy to provision both.
+    </p>
+    
+    <p>
+        Showcased below, is the compose file used for the PostgreSQL database along with pgAdmin. Images from Docker Hub along with the YML file are linked in the end of the post.
+    </p>
+
+    <p>
+        <code>💡</code> To log-in into pgAdmin you need to provide a format of an email like so: <code>user@test.com</code>.
+    </p>
+    
+    <p>
+        <code>💡</code> The volume for pgadmin4 is optional as you can just provide the server information when you log-in into pgAdmin.
+    </p>
+
+    <p>
+        <code>💡</code> I like using LazyDocker when I setup everything as it easily lets you choose what to spin up. You might not want pdAdmin.
+    </p>
+
+    <div class="blog-image">
+        <figure> 
+            <img src="/blog-posts/spring-api-cats/images/postgresql-docker-compose.png" alt="Docker compose file for database and pgadmin.">
+        </figure> 
+        <figcaption>
+            PostgreSQL & pgAdmin4 Compose File
+        </figcaption>
+    </div>
+
+    <hr>
+
+    <h2>
+        A <code>POST</code> Request in Spring
+    </h2>
+
+    <p>
+        I wanted to do a quick revision for Java and Springboot so I went ahead and created a rather simple API and learned stuff that I had obviously missed when I was enrolled into my springboot course. 
+    </p>
+
+    <p>
+        Below you can see an infographic I sketched using <a href="https://obsidian.md/" target="_blank">Obsidian</a> and <a href="https://excalidraw.com/">Excalidraw</a> that showcases relationships between classes of code that I find useful in order to understand what exactly is going on when there is a POST request to create a new <code>Cat</code>. We'll take a closer look as there's a lot of stuff going on behind the scenes.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/code-infographic-full.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/code-infographic-full.png" alt="Program classes and their relationships.">
+            </a>
+        </figure> 
+        <figcaption>
+            Controller, Service, DTO and Mapper.
+        </figcaption>
+    </div>
+
+    <ul>
+        <li>
+            We have a <code>@RestController</code> with a mapping basis of <code>/api/v1/cats</code> which the requests will land at.
+        </li>
+        <li>
+            Specifically we will be looking at the <code>@PostMapping</code> of the controller, as this suits the previous infographic that I put on for display.
+        </li>
+        <li>
+            Before we look into how the controller takes a request and returns a response I want to side-track a bit and write about Jakarta Validation and it's <code>@Valid</code> annotation.
+        </li>
+    </ul>
+
+    <p>
+        The <code>.createCat()</code> controller method has an annotation of <code>@Valid</code> that triggers Validation. Validation of what though? Let's dive into the <code>CatRequest</code> record and see what's in there and how validation works!    
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/cat-request-record.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/cat-request-record.png" alt="A snippet showing a record java class.">
+            </a>
+        </figure> 
+        <figcaption>
+            <code>CatRequest</code> Record Class with Validation.
+        </figcaption>
+    </div>
+
+    <ul>
+        <li>When a request is being made by the user to create a <code>Cat</code>, we want to validate three (3) things.</li>
+        <li>The <code>title</code> of the cat must not be blank with the help of <code>@NotBlank</code>.</li>
+        <li>We also impose character limits using <code>@Size</code> for both the <code>title</code> and <code>description</code>.</li>
+        <li>Validation is present only in the <code>CatRequest</code> record and not in the <code>CatResponse</code>.</li>
+        <li>Now let's get back to the controller.</li>
+    </ul>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/cat-controller.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/cat-controller.png" alt="Controller">
+            </a>
+        </figure> 
+        <figcaption>
+            <code>CatController</code> class
+        </figcaption>
+    </div>
+
+    <ul>
+        <li>
+            The <code>@RequestBody</code> automatically deserializes the body of the HTTP request into the <code>CatRequest</code> object.
+        </li>
+        <li>
+            The contoller's return type is a <code>ResponseEntity</code> containing a <code>CatResponse</code>.
+        </li>
+        <li>
+            Then, with <code>CatSevice</code> we create a new <code>Cat</code> in the database which we will see how that works below.
+        </li>
+        <li>
+            In the end, we return a <code>ResponseEntity</code> with the body containing the <code>savedCat</code> which is a <code>CatResponse</code>.
+        </li>
+        <li>
+            Let's continue with the <code>.createCat()</code> service method to make things a bit more clear.
+        </li>
+    </ul>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/cat-service.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/cat-service.png" alt="Service">
+            </a>
+        </figure> 
+        <figcaption>
+            <code>CatService</code> class
+        </figcaption>
+    </div>
+
+    <ul>
+        <li>
+            The method accepts a <code>CatRequest</code> and it's return type is a <code>CatResponse</code>.
+        </li>
+        <li>
+            We make a new <code>entityCat</code> of type <code>Cat</code> that is a <code>CatRequest</code> which is mapped into an entity with the help of a mapper.
+        </li>
+        <li>
+            Then we save the <code>entityCat</code> using the Repository <code>catRepository</code>.
+        </li>
+        <li>
+            Lastly, taking the <code>savedCat</code> we use the Mapper again to map the <code>savedCat</code> into a <code>CatResponse</code>.
+        </li>
+    </ul>
+
+    <p>
+        Since the Service layer has two (2) methods being used to map a request into an entity and an entity to a response let's take a look at those two methods as well.
+    </p>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/cat-mapper.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/cat-mapper.png" alt="Mapper">
+            </a>
+        </figure> 
+        <figcaption>
+            <code>CatMapper</code> class
+        </figcaption>
+    </div>
+
+    <ul>
+        <li>
+            In both methods of the mapper we use <code>@Builder</code> from Lombok to quickly construct instances. This is possible as the entity <code>Cat</code> and the record <code>CatResponse</code> are annotated with <code>@Builder</code>.
+        </li>
+        <li>
+            <code>!= null ? request.isorange() : false</code> ensures that null is accounted for as well. As long as <code>isorange</code> is not null the ternary hits <code>request.isorange()</code> otherwise we have <code>false</code>.
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>
+        Thoughts
+    </h2>
+    
+    <p>
+        Separating code to different files and packages makes everything neat and organized. When coding, it is important to have a place where each corner is responsible to do something specific. A controller should handle requests and should not be cluttered with business logic. A mapper maps. A repo repoes and so on.
+    </p>
+
+    <p>
+        Spring-wise, it is quite interesting that parts of your code are inverted in regards of control to be handled by the spring container. Paired with DI(dependency injection) you get instances of your beans where they're needed and everything becomes easier. Spring really does the heavy lifting behind the scenes!
+    </p>
+
+    <hr>
+
+    <h2>
+        Heroku and Deploying
+    </h2>
+
+    <p>
+        Now let's deploy the API to Heroku! It's pretty simple actually and the docs are a breeze. Heroku provides 312$ worth of credits if you're a student and enrolled into the <a href="https://education.github.com/pack" target="_blank">GitHub Student Developer Pack</a> which is suprisingly easy to do so. No brainer. Let's see how we can deploy our app now.
+    </p>
+
+    <ul>
+        <li>
+            First, we need to install the Heroku CLI. Personally, I did it with <a href="https://brew.sh/" target="_blank">homebrew</a>. Don't forget to login into the Heroku CLI before you start doing anything else.
+        </li>
+        <li>
+            Now, in our IntelliJ IDE, we have to initiate git with <code>git init</code>.
+        </li>
+        <li>
+            Afterwards, we add the files and commit with <code>git add .</code> and <code>git commit -m "first commit!"</code> respectively.
+        </li>
+        <li>
+            Almost there! We create the app and push our code like so: <code>heroku create</code> and <code>git push heroku master</code>.
+        </li>
+    </ul>
+
+    <p>That's all. The app is now deployed but we still do not have a PostgreSQL database so let's do that as well. Heroku makes it easy.</p>
+
+    <ul>
+        <li>
+            There are a lot of extras to complement your deployed application in Heroku. They are called add-ons.
+        </li>
+        <li>
+            To provision a database of Postgres we can do so by doing the following: <code>heroku addons:create heroku-postgresql</code>.
+        </li>
+        <li>
+            You do not necessarily need to provide the database URL, username and password as Heroku will automatically populate the environment variables as long as the PostgreSQL driver and the springboot starter jdbc dependencies are present in the <code>pom.xml</code> file :)
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>
+        Testing with HTTPie
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://httpie.io/" target="_blank">HTTPie</a> is an API testing platform where you can create HTTP requests that I will be using today.</li>
+        <li>
+            Multiple different platforms exist that serve as an API testing platform to work on. <a href="https://www.postman.com/" target="_blank">Postman</a> is a very popular choice.
+        </li>
+        <li>
+            Let's test the Cat API that we have now deployed on Heroku.
+        </li>
+    </ul>
+
+    <div class="post-image">
+        <figure> 
+            <a href="/blog-posts/spring-api-cats/images/httpie-api-testing.png" target="_blank">
+                <img src="/blog-posts/spring-api-cats/images/httpie-api-testing.png" alt="A program that is being used to test an API.">
+            </a>
+        </figure> 
+        <figcaption>
+            HTTPie API Testing
+        </figcaption>
+    </div>
+
+    <p>
+        As you can see the <code>POST</code> request on <code>/api/v1/cats</code> responds with the new <code>Cat</code> we have created!
+    </p>
+
+    <hr>
+
+    <h2>
+        References
+    </h2>
+
+    <ul>
+        <li>
+            <a href="https://hub.docker.com/r/elestio/pgadmin" target="_blank">DockerHub: pgadmin</a>
+        </li>
+        <li>
+            <a href="https://hub.docker.com/_/postgres" target="_blank">DockerHub: postgres</a>
+        </li>
+        <li>
+            <a href="/blog-posts/spring-api-cats/resources/docker-compose.yml" target="_blank">YML Docker Compose File</a>
+        </li>
+        <li>
+            <a href="https://github.com/k0st1e/springboot-kitten-rest-api" target="_blank">GitHub Repository</a>
+        </li>
+        <li>
+            <a href="https://github.com/k0st1e/springboot-kitten-rest-api/blob/master/README.md" target="_blank">GitHub Repository: API README</a>
+        </li>
+        <li>
+            <a href="https://www.postman.com/ target="_blank">Postman API Testing Platform</a>
+        </li>
+        <li>
+            <a href="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku"_blank">Deploying Springboot Apps to Heroku</a>
+        </li>
+        <li>
+            <a href="https://education.github.com/pack"_blank">GitHub Student Developer Pack</a>
+        </li>
+        <li>
+            <a href="https://www.heroku.com/github-students/"_blank">Heroku for GitHub Students</a>
+        </li>
+    </ul>
+
+    <hr>
+
+    <p>
+        That's all folks. Thanks for reading!
+    </p>
+
+    <div class="back-link">
+        <a href="/index.html">Back</a>
+    
+  </section>
+
+</div>
+
+</body>
+</html>
