@@ -11,7 +11,7 @@ A small static set of pages featuring byte sized posts in the journey of explori
     * Deploying.
     * Testing APIs.
 
-* 21-02-2026: [Raspberry Pi Shenanigans](https://aurora-node.github.io/blog-posts/raspberry-pi-shenanigans/raspberry-pi-shenanigans.html)
+* 21-02-2026: [Raspberry Pi Shenanigans](https://aurora-node.github.io/blog-posts/raspberry-pi-shenanigans/raspberry-shenanigans.html)
     * Moisture Sensors.
     * HATs for the Pi
     * Measuring Moisture Readings.
