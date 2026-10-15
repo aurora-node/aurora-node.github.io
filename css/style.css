@@ -25,6 +25,7 @@ header {
   text-decoration: none;
   color: #2e2522;
   transition: transform 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
 .navbar:hover {
@@ -200,6 +201,7 @@ code {
     transition: color 0.2s ease;
 }
 
+/* Sligthly more red when we hover over blog post titles. */
 .blog-post:hover {
   color: #ff2a1a;
 }
@@ -221,8 +223,29 @@ code {
     color: #d0361c; 
 }
 
+/* Caption for images. */
 figcaption {
   color: #666;
   margin-top: 0.5rem;
   text-align: center;
+}
+
+/* Image logo on the left of the nav-bar */
+.img-logo {
+  margin-top: 5px; 
+  height: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
+}
+
+/* Seperators for top links after they get close to each other */
+.sep {
+  display: none;
+  color: #7a6a66;
+}
+
+@media (max-width: 600px) {
+  .sep {
+    display: block;
+  }
 }
