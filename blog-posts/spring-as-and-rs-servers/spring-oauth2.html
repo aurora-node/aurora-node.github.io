@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spring OAuth2</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/images/logo-aurora.jpg">
+    <!-- Prism CSS File -->
+    <link href="/css/prism.css" rel="stylesheet" />
+    <!-- My CSS File -->
+    <link href="/css/style.css" rel="stylesheet" >
 </head>
+
 <body>
 
 <header>
-  <img class="img-logo" src="/css/logo-aurora.jpg">
-  <span class="sep" aria-hidden="true">-</span>
+  <img class="img-logo" src="/images/logo-aurora.jpg">
+  <span class="sep" aria-hidden="true">‒</span>
   <a href="/index.html" class="navbar">Aurora Node</a>
-  <span class="sep" aria-hidden="true">-</span>
+  <span class="sep" aria-hidden="true">‒</span>
   <a href="/about/about.html" class="navbar">About</a>
 </header>
 
@@ -28,7 +33,7 @@
         </a>
 
         <div class="post-meta">
-            16/10/2026 <br>
+            20/10/2026 <br>
             The quest of OAuth2
         </div>
       </div>
@@ -40,23 +45,440 @@
 
     </div>
 
+    <br><br>
+
+    <hr>
+
+    <h2>
+      But what about Learning?
+    </h2>
+
+    <p>
+      You stumble upon opaque and non-opaque tokens, introspection end-points, grant types and you ask yourself what in the world 
+      is OAuth2 and all of these new words. How does it all fit together? You think to yourself, "I should Google and find a good 
+      resource to learn". Right? Welp. Probably not. 
+    </p>
+
+    <p>
+      Most, if not all introductions on how to code something along the lines of OAuth2 with Spring are mediocre at best. No name 
+      third-party libraries cluttering your project, an abundance of outdated videos in every corner of the internet, and weird approaches 
+      on how to learn application security to finally reach your goal of building something with OAuth2. 
+    </p>
+
+    <p>
+      Lots of bookmarks later and skimming through web pages I concluded that it is best to create something from scratch and by 
+      "from scratch" I mean: learning the underlying theory, working with what Spring offers directly, and building an OAuth2 flow from 
+      the ground up without relying too much on something that solves the problem for you, such as an authorization server that sets up token 
+      creation and authentication for you out of the box. It is better to try and do something on your own, at least for the first time.
+    </p>
+
+    <hr>
+
+    <h2>
+      Prototyping, Tracer Bullets, and how the two relate together
+    </h2>
+
+    <p>
+      Before diving into OAuth2 and Spring, I would really like to include in this post a handful of quotes from a greatly written 
+      book called <a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/" target="_blank">The Pragmatic Programmer</a> 
+      by David Thomas and Andrew Hunt. They convey an interesting approach on how to think and act when programming. It is an amazing 
+      book to open and read through and lots of points hit home hard. 
+    </p>
+
+    <p>
+      I remember reading the "Listen to Your Lizard Brain" and "Fear of the Blank Page" 
+      topics and laughing to myself. Have you ever had a brief unsettling feeling but 
+      you couldn't pinpoint what it is when you program? That's your 
+      instinct and lizard brain telling you something that hasn't surfaced yet!
+    </p>
+
+    <figure>
+      <blockquote>
+          <p>your lizard brain is trying to tell you something; there's some kind of doubt lurking</p>
+      </blockquote>
+    </figure>
+
+    <p>
+      Or have you ever found the initial blank page a bit daunting? Maybe it is time for some disposable code and a prototyping session!
+    </p>
+
+    <p>
+      A good way to overcome coding doubts is to take action. Prototypes are meant to be thrown away and a good way to experiment without 
+      pressure or the expectation to write something that will stick. It is ephemeral code. You write it and say your goodbyes.
+    </p>
+    
+
+    <figure>
+      <blockquote>
+          <p>prototypes get thrown away, even if they don't fail</p>
+      </blockquote>
+    </figure>
+
+    <p>
+      Remember that when we prototype something as we said, we throw it away in the end. This is especially useful as from prototyping we might 
+      learn something new, take the lessons learnt and mold them into something better later on.
+    </p>
+
+    <p>
+      Crossing at the other side of prototyping, lets see what tracer bullets are and how they relate to prototyping. Here is a quote that 
+      frames prototyping and tracer bullets together.
+    </p>
+
+    <figure>
+      <blockquote>
+          <p>Think of prototyping as the reconnaissance and intelligence gathering that takes place before a single tracer bullet is fired.</p>
+      </blockquote>
+    </figure>
+
+    <p>
+      But what is a tracer bullet and how does it even relate to programming? Tracer bullets leave a distinct trail behind them and help a soldier 
+      hit their target. Now if we try and find the analogy in programming on what tracer bullets are, simply put they are the process you go through 
+      from taking an initial requirement to reaching a complete sub-part of the final system you are trying to build, an end to end connection with all 
+      the components you have for the system to work. Tracer code is lean and forms the initial scaffold of the project.
+    </p>
+
+    <hr>
+      
+    <h2>
+      Coffee Beans: Spring Authorization and Resource Servers
+    </h2>
+
+    <p>
+      Continuing with Spring, the sketch below really helps to visualize the big picture of what's going on with the two servers. Starting on the right-hand side we got 
+      the coffee bean tree (Authorization Server) that grows the coffee beans (Tokens). It can be configured to our liking and mint lots of tokens. 
+      Even different kinds of tokens which is called multi-tenancy! You could mint both opaque and non-opaque tokens.
+    </p>
+
+    <p>
+      On the left-hand side we have something else; a sack of beans that fetches tokens which were issued by the coffee bean 
+      tree. The sack figures out if they're legitimate by asking the tree and by examining the token, it knows which parts of 
+      the software can be reached by applying authorization rules.
+    </p>
+
+    <p>
+      The thing I liked the most though, is how the traveling of the coffee beans (tokens) takes place. At first you augment 
+      them in the authorization side however you find fit, and mold information to travel into a list since you can add a list of 
+      authorities into the token. On the flip side, you do the opposite; you take the list from the token, unmold it into authorities and 
+      feed the bean sack with the authorities. This way the user can access only what you want them to.
+    </p>
+
+    <p>
+      There are a lot of details omitted in this overview such as the ordering of filters, how the keys are generated or how the resource server 
+      communicates with the other side but I'd like to keep it short and focus on the big picture of the two servers.
+    </p>
+
+    <p>
+      For details not being omitted a good book is
+      <a href="https://www.manning.com/books/spring-security-in-action-second-edition" target="_blank">Spring Security in Action by Laur Spilca</a>
+      which inspired me to sketch with coffee beans. It also explains OAuth2 in great detail; from theory to basics, 
+      and implementations. No weird-third party libraries and bad approaches. Paired with official Spring documentation learning 
+      OAuth2 becomes a walk in the park.
+    </p>
+
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-as-and-rs-servers/images/spring-as-and-rs-full-sketch.png" target="_blank">
+          <img src="/blog-posts/spring-as-and-rs-servers/images/spring-as-and-rs-full-sketch.png" alt="Spring sketch depicting authorization and resource servers.">
+      </a>
+      <figcaption>
+          Spring Authorization and Resource Servers
+      </figcaption>
+    </figure>
+
+    <br>
+
+    <hr>
+
+    <h2>
+      A small detour in the world of Self-Hosting
+    </h2>
+
+    <p>
+      A small detour worth taking. There's a running joke online where the Raspberry Pi always ends up on a shelf and 
+      having the fate of being permanently dusted. My Pi has had that fate in the past, a couple of times but it was high 
+      time to give it some proper meaning and that's where self-hosting came into play. Mind you, that the following setup 
+      works closely with
+      <a href="https://tailscale.com/" target="_blank">Tailscale</a> 
+      that lets me have an "overlay-network" as they state so I can access my devices everywhere I go securely.
+    </p>
+
+    <p>
+      The project I was creating involved
+      <a href="https://github.com/k0st1e/spring-authorization-resource-server" target="_blank">OAuth2 for a React Client</a>,
+      but I also wanted to include code versioning and 
+      some kind of CI/CD to automatically test my code and push Docker images. 
+    </p>
+
+    <p>
+      This was the perfect case of reviving the Raspberry Pi so I decided to self-host a free and open-source 
+      alternative to GitHub called 
+      <a href="https://about.gitea.com/" target="_blank">Gitea</a>. 
+      A few exciting parts of Gitea was, that it offered a local image registry and support to seamlessly integrate 
+      with a CI/CD engine called
+      <a href="https://woodpecker-ci.org/" target="_blank">Woodpecker</a>.
+    </p>
+
+    <p>
+      So it made sense to create pipelines in order to build the applications, test the software, and finally push images to
+      both the local image registry in Gitea but also DockerHub to get over the whole fiasco of: "But it works on my computer!".
+    </p>
+
+    <hr>
+
+    <h2>
+      REST APIs Design
+    </h2>
+
+    <p>
+      As for creating the REST APIs, I mostly did what I already knew except a couple of things. I properly used 
+      <a href="https://docs.spring.io/spring-framework/reference/core/aop.html" target="_blank">Spring Aspects</a>
+      to intercept exceptions with a <code>RestControllerAdvice</code> so I could keep the controllers lightweight and only 
+      introduced exceptions in the service layer. So when something went sideways the flow continued in the advice. 
+    </p>
+
+    <pre><code class="language-java">
+    @RestControllerAdvice
+    public class ExceptionControllerAdvice {
+      // ...
+      @ExceptionHandler(CreateTaskException.class)
+        // ...
+      }
+      // ...
+    }
+    </code></pre>
+
+    <p>
+      Other than that, I modeled the requests, responses, error details, and used a mapper as an intermediary for actions 
+      such as: mapping to an entity or mapping to a response.
+    </p>
+
+    <p>
+      IntelliJ IDEA is helpful enough and provides a 
+      <a href="https://www.jetbrains.com/help/idea/spring-diagrams.html" target="_blank">Bean Graph</a>
+      so we can see how all of the REST API beans relate to each 
+      other. The classes that model the request, the response and the errors are obviously omitted as they're not picked up 
+      by the Spring Container as a bean to augment them.
+    </p>
+
+    <br>
+
+    <figure class="inline-image">
+      <img src="/blog-posts/spring-as-and-rs-servers/images/rest-api-bean-graph.png" alt="A helpful bean graph that shows how the A.P.I. beans relate to each other.">
+      <figcaption>
+          REST API Bean Graph from IntelliJ IDEA
+      </figcaption>
+    </figure>
+
+    <br>
+
+    <hr>
+
+    <h2>
+      Testcontainers!
+    </h2>
+
+    <p>
+      Woodpecker is interesting but what about testing our software? I found about
+      <a href="https://testcontainers.com/" target="_blank">Testcontainers</a>
+      in a video by Dan Vega a while ago. It was great all around and if you want to look into this kind of integration testing, 
+      in the end I have a handy link for the video along with some MySQL documentation from their official website. 
+    </p>
+
+    <p>
+      I experimented with it and decided to include it in the project. They're essentially ephemeral containers that spin up when 
+      you do integration testing so you can have a real MySQL database to perform testing with. Woodpecker runs its steps in 
+      containers and also uses MySQL containers for the testing phase.
+    </p>
+
+    <p>
+      Now, here's a pipeline running. Pretty funny to see the woodpecker. Unless the pipeline turns red. That's not very nice.
+      Respectively each pipeline is triggered when there are changes in the Authorization Server or the Resource Server as we have two little <code>.yaml</code> files for each server. 
+    </p>
+
+    <figure class="inline-image">
+      <img src="/blog-posts/spring-as-and-rs-servers/images/pipeline-running.png" alt="Woodpecker C.I. pipeline running by depicting a woodpecker chopping something.">
+      <figcaption>
+          Woodpecker CI Pipeline Running
+      </figcaption>
+    </figure>
+
+    <br>
+
+    <hr>
+
+    <h2>
+      Testcontainers and JWTs
+    </h2>
+
+    <p>
+      In the following snippet we can see the initial code needed to start working with Testcontainers. We use testing application properties rather than the normal ones. This is done so we can tell Hibernate to automatically create and drop the tables; <code>@ActiveProfiles("test")</code>.
+    </p>
+
+    <p>
+      With <code>@DynamicPropertySource</code> instead of writing the datasource properties into the application properties file, we provide them from the container that spins up for testing since the datasource information is not known beforehand.
+    </p>
+
+    <p>
+      Also, the <code>JwtDecoder</code> is mocked out so we can later on adjust it. If we do not do this we won't be able to test the API. It needs the token attached as a <code>Bearer {token-value}</code> in the request.
+    </p>
+
+    <pre><code class="language-java">
+    // Full App Ctx with Test App Properties.
+    @ActiveProfiles("test")
+    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+    class TaskControllerTest {
+
+      @LocalServerPort
+      private int port;
+
+      // One (1) container for many tests.
+      static MySQLContainer mysql = new MySQLContainer("mysql:8.0.36");
+
+      @BeforeAll
+      static void beforeAll() {
+          mysql.start();
+      }
+      @AfterAll
+      static void afterAll() {
+          mysql.stop();
+      }
+
+      // Instead of app properties, do this:
+      @DynamicPropertySource
+      static void dynamicProperties(DynamicPropertyRegistry registry) {
+          registry.add("spring.datasource.url", mysql::getJdbcUrl);
+          registry.add("spring.datasource.username", mysql::getUsername);
+          registry.add("spring.datasource.password", mysql::getPassword);
+      }
+
+      @Autowired
+      TaskRepository taskRepository;
+
+      // Mock the JWT Converter
+      @MockitoBean
+      JwtDecoder jwtDecoder;
+    </code></pre>
+
+    <br>
+    
+    <p>
+      Before each method that is annotated with <code>@Test</code> we have the <code>setUp()</code>. Here we specify the base URI, we delete any leftovers in the database and in our case, create a simple <code>Jwt</code>. Note that by default in testing, the token is hard coded with a claim of <code>"authorities"</code> which contains a single authority of type <code>"USER"</code>. This means that it will be authorized for end-points that permit this specific authority.
+    </p>
+
+    <br>
+
+    <pre><code class="language-java">
+    @BeforeEach
+    void setUp() {
+
+      RestAssured.baseURI = "http://localhost:" + port;
+
+      // Needed since if we start another test old data must be purged.
+      taskRepository.deleteAll();
+
+      // Default token has `USER` claim so requests are authorized with this token.
+      Jwt jwt = Jwt
+              .withTokenValue("testing-token")
+              // Not signed.
+              .header("alg", "none")
+              // `testing-user` will live in the database in the `userSub` column.
+              .claim("sub", "testing-user")
+              // `USER` authority claim.
+              .claim("authorities", List.of("USER"))
+              .build();
+
+      // Stubbing method, when `decode` is called return the `jwt` above.
+      when(jwtDecoder.decode(anyString())).thenReturn(jwt);
+    }
+    </code></pre>
+
+    <br>
+
+    <p>
+      Here is a simple test that instead creates a new <code>Jwt</code> and does not use the initial one from the <code>setUp()</code> method we previously saw. I created
+      a new token with an authority that will be rejected by the Resource Server. As
+      such, we expect the response to be a 403 forbidden status code when we try and hit the <code>/api/v1/tasks</code> end-point.
+
+    <br>
+
+    <pre><code class="language-java">
+    @Test
+    void fetchAllTasks_withInvalidTokenAuthority_returns403() {
+
+        Jwt jwt = Jwt
+                .withTokenValue("testing-token")
+                .header("alg", "none")
+                .claim("sub", "testing-user")
+                // Jwt with `NOT_USER` Claim.
+                .claim("authorities", List.of("NOT_USER"))
+                .build();
+
+        // Instead of initial `jwt` we get the above one.
+        when(jwtDecoder.decode(anyString())).thenReturn(jwt);
+
+        given()
+                .header("Authorization", "Bearer testing-token")
+
+                .when().get("/api/v1/tasks")
+
+                .then()
+                    .statusCode(403);
+    }
+    </code></pre>
+
+    <br>
+
+    <hr>
 
     <h2>
         References
     </h2>
 
     <ul>
+
+        <li>
+            <a href="https://about.gitea.com/" target="_blank">Gitea Official Website</a>.
+        </li>
+
+        <li>
+          <a href="https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html" target="_blank">Spring OAuth 2.0 Resource Server</a>.
+        </li>
+
+        <li>
+            <a href="https://docs.spring.io/spring-security/reference/servlet/oauth2/authorization-server/index.html" target="_blank">Spring OAuth 2.1 Authorization Server</a>.
+        </li>
+
+        <li>
+            <a href="https://www.manning.com/books/spring-security-in-action-second-edition" target="_blank">Spring Security in Action, Second Edition by Laurentiu Spilca</a>.
+        </li>
+
+        <li>
+            <a href="https://www.youtube.com/watch?v=erp-7MCK5BU" target="_blank">Testcontainers, Dan Vega</a>.
+        </li>
+
+        <li>
+            <a href="https://testcontainers.com/modules/mysql/" target="_blank">Testcontainers, MySQL Docs</a>.
+
+        <li>
+            <a href="https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/" target="_blank">The Pragmatic Programmer, 20th Anniversary Edition by David Thomas and Andrew Hunt</a>.
+        </li>           
+      
+        </li>
         
         <li>
-            Test list item
+            <a href="https://woodpecker-ci.org/" target="_blank">Woodpecker Official Website</a>.
         </li>
+
     </ul>
 
     <hr>
 
     <p>
-        That's all folks. Thanks for reading!
+        Thanks for reading. Happy coding and fire some tracer bullets!
     </p>
+
+    <hr>
 
     <div class="back-link">
         <a href="/index.html">Back</a>
@@ -65,6 +487,6 @@
 
 </div>
 
-    
+    <script src="/javascript/prism.js"></script>
 </body>
 </html>
