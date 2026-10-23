@@ -5,8 +5,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Localized AI</title>
-  <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" href="/images/logo-aurora.jpg">
+    <!-- My CSS File -->
+    <link href="/css/style.css" rel="stylesheet" >
 </head>
 
 <body>
@@ -65,14 +66,13 @@
 
     <br>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/localized-ai/images/simple-query-with-llama.png" alt="Simple query using llama3.2. User says hi and AI responds.">
-        </figure> 
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/simple-query-with-llama.png" alt="Simple query using llama3.2. User says hi and AI responds.">
+
         <figcaption>
-            Simple query with llama3.2
+          Simple query with llama3.2
         </figcaption>
-    </div>
+    </figure>
 
     <p>
         Now, to make it a bit more interesting we can also use ramalama to <a href="https://github.com/containers/ramalama/blob/main/docs/ramalama-rag.1.md" target="_blank">create our own RAG</a> to complement a model. Firstly, we need to find what files to use. I decided to use a singular Java book I had laying around to test it out.
@@ -92,14 +92,15 @@
 
     <br>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/rag-query.png" alt="Simple query using llama3.2 with a RAG. User asks for book chapters and the bot responds.">
-        </figure>
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/rag-query.png" alt="Simple query using llama3.2 with a RAG. User asks for book chapters and the bot responds.">
+
         <figcaption>
-            Querying to fetch chapters in the Java book.
+          Querying to fetch chapters in the Java book.
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -155,27 +156,27 @@
         </li>
     </ul>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/vscode-containers.png" alt="Visual Studio Code container extension.">
-        </figure>
+    <br>
+
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/vscode-containers.png" alt="Visual Studio Code container extension.">
+
         <figcaption>
-            Visual Studio Code's Dev Container Extension
+          Visual Studio Code's Dev Container Extension
         </figcaption>
-    </div>
+    </figure>
 
     <br>
 
-    <br>
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/model-creation-invoking.png" alt="AI model creation and invoking it.">
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/model-creation-invoking.png" alt="AI model creation and invoking it.">
-        </figure>
         <figcaption>
-            Model creation and invoking.
+          Model creation and invoking.
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -205,14 +206,17 @@
         </li>
     </ul>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/document-loading-splitting.png" alt="Documents loading and splitting.">
-        </figure>
+    <br>
+
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/document-loading-splitting.png" alt="Documents loading and splitting.">
+
         <figcaption>
-            Documents loading and splitting into chunks.
+          Documents loading and splitting into chunks.
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -236,14 +240,17 @@
         </li>
     </ul>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/embeddings-vector-store.png" alt="Embedding and the vector store">
-        </figure>
+    <br>
+
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/embeddings-vector-store.png" alt="Embeddings and the vector store">
+
         <figcaption>
-            Embeddings and Vector Store.
+          Embeddings and Vector Store.
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -255,14 +262,17 @@
         Moreover, since we now have a vector store, we can now create a tool that will perform similarity searches and help us guide our agent when we perform queries.
     </p>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/langchain-tool-dec.png" alt="Tool creation for an agent">
-        </figure>
+    <br>
+
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/langchain-tool-dec.png" alt="Tool creation for an agent">
+
         <figcaption>
-            Langchain's Tool Decorator - A function that performs similarity searches.
+          Langchain's Tool Decorator - A function that performs similarity searches.
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <p>
         Recapping, we have loaded our documents, created embeddings, stored them into a vector store and created a tool to retrieve context. The only things left to do are to create an agent using a model(llama3.2), leverage the tool and run a test query with the agent.
@@ -284,14 +294,17 @@
         The PDFs I used for the agent were some guides that have indicative learning sections hence the prompt. As you can see, the agent replies with said indicative reading books that are in the guides.
     </p>
 
-    <div class="post-image">
-        <figure>
-            <img src="/blog-posts/localized-ai/images/agent-creation-and-bot-responding.png" alt="Agent creation and the results of a user query">
-        </figure>
+    <br>
+
+    <figure class="inline-image">
+        <img src="/blog-posts/localized-ai/images/agent-creation-and-bot-responding.png" alt="Agent creation and the results of a user query">
+
         <figcaption>
-            Agent Creation and Results of a Query
+          Agent Creation and Results of a Query
         </figcaption>
-    </div>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -326,12 +339,13 @@
         That's all folks. Thanks for reading!
     </p>
 
+    <hr>
+
     <div class="back-link">
         <a href="/index.html">Back</a>
     
   </section>
 
 </div>
-
 </body>
 </html>
