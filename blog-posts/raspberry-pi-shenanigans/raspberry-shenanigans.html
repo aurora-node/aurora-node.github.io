@@ -65,14 +65,15 @@
 
     <br>
 
-    <div class="blog-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/raspberry-and-moisture-sensor.png" alt="A raspberry pi setup with a hat that a moisture sensor is connected to.">
-        </figure> 
-        <figcaption>
-            Raspberry Pi and the Moisture Sensor
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/raspberry-and-moisture-sensor.png" alt="A raspberry pi setup with a hat that a moisture sensor is connected to.">
+
+      <figcaption>
+          Raspberry Pi and the Moisture Sensor
+      </figcaption>
+    </figure>
+    
+    <br>
 
     <hr>
 
@@ -84,27 +85,27 @@
         The program is rather simple. We import <code>time</code>, <code>numpy</code> and <code>ADC</code> from the <code>grove.adc</code> library. Afterwards, we create an <code>adc</code> to use it in a loop that reads the sensor that in turn maps it to readable friendly values. It sleeps between readings to send less data as a reading every second is adequate for an experiment. 
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-moisture-program.png" alt="A python program that is used in order to take readings from a moisture sensor.">
-        </figure> 
-        <figcaption>
-            Python Script of Moisture Sensor
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-moisture-program.png" alt="A python program that is used in order to take readings from a moisture sensor.">
+
+      <figcaption>
+          Python Script of Moisture Sensor
+      </figcaption>
+    </figure>
 
     <p>
         The sensor initially is dry. When the sensor is submerged into a glass of water, the reading instantaneously jumps to a value of almost a hundred. In the last lines the sensor was wiped with a paper towel.
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/moisture-sensor-in-glass-of-water.png" alt="The sensor is submerged intro a glass of water to test sensor readings.">
-        </figure> 
-        <figcaption>
-            Sensor Testing with Glass of Water
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/moisture-sensor-in-glass-of-water.png" alt="The sensor is submerged intro a glass of water to test sensor readings.">
+
+      <figcaption>
+          Sensor Testing with Glass of Water
+      </figcaption>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -116,27 +117,29 @@
         Beneath you can see the setup with a plant of Aloe.
     </p>
 
-    <div class="blog-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-with-aloe-setup.png" alt="An alloy plant setup with raspberry pi.">
-        </figure> 
-        <figcaption>
-            Alloy and Pie Setup
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/rpi-with-aloe-setup.png" alt="An alloy plant setup with raspberry pi.">
+
+      <figcaption>
+          Alloy and Pie Setup
+      </figcaption>
+    </figure>
 
     <p>
         When the plant is watered the sensor jumps instantly to a high moisture reading when it detects water and starts gradually decaying to a lower number. After roughly five (5) minutes the value had dropped to a reading of approximately <code>60</code>.
     </p>
 
-    <div class="blog-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/watering-alloy-readings.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
-        </figure> 
-        <figcaption>
-            Readings after Watering the Alloy
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/watering-alloy-readings.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
+
+      <figcaption>
+          Readings after Watering the Alloy
+      </figcaption>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -156,14 +159,14 @@
         SSH setup unfortunately did not work and after skimming through some forums I found out you can simply provide a file named <a href="https://www.raspberrypi.com/documentation/computers/configuration.html#remote-access" target="_blank">userconf</a> into the boot partition with the username and password which ultimately proved to be a success!
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/fastfetch-on-both-devices.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
-        </figure> 
-        <figcaption>
-            A Slice of Pie
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/fastfetch-on-both-devices.png" alt="Watering the alloy reveals sensor readings that slowly drop after the plant is watered.">
+      <figcaption>
+          A Slice of Pie
+      </figcaption>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -183,14 +186,14 @@
         <code>💡</code> You can run compose detached to continue using the terminal with the small flag of <code>-d</code>!
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/raspberry-pi-shenanigans/images/docker-compose-on-pi.png" alt="Docker compose is showcased along with a database running.">
-        </figure> 
-        <figcaption>
-            Docker Compose
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+    <img src="/blog-posts/raspberry-pi-shenanigans/images/docker-compose-on-pi.png" alt="Docker compose is showcased along with a database running.">
+      <figcaption>
+          Docker Compose
+      </figcaption>
+    </figure>
+
+    <br>
 
     <hr>
 
@@ -241,6 +244,8 @@
     <p>
         That's all folks. Thanks for reading!
     </p>
+
+    <hr>
 
     <div class="back-link">
         <a href="/index.html">Back</a>

@@ -59,14 +59,14 @@
         It is a lot more coherent now with JetBrains projects in their respective folders and compose files along with volumes living in a folder all together. I guess I am collecting databases now. 
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <img src="/blog-posts/spring-api-cats/images/dolphin-files.png" alt="Dolphin file explorer showcasing different directories with colorful custom icons.">
-        </figure> 
-        <figcaption>
-            Dolphin with Custom Icons
-        </figcaption>
-    </div>
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/dolphin-files.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/dolphin-files.png" alt="Dolphin file explorer showcasing different directories with colorful custom icons.">
+      </a>
+      <figcaption>
+          Dolphin with Custom Icons.
+      </figcaption>
+    </figure>
 
     <p>
         Initially for the spring app, there was H2 usage but ultimately I wanted to deploy the app so I migrated to PostgreSQL in the end. Additionally, it will prove useful in the future as I will be using PostgreSQL and possibly PostGIS for a bigger project and Heroku makes it easy to provision both.
@@ -88,16 +88,20 @@
         <code>💡</code> I like using LazyDocker when I setup everything as it easily lets you choose what to spin up. You might not want pdAdmin.
     </p>
 
-    <div class="blog-image">
-        <figure> 
-            <img src="/blog-posts/spring-api-cats/images/postgresql-docker-compose.png" alt="Docker compose file for database and pgadmin.">
-        </figure> 
-        <figcaption>
-            PostgreSQL & pgAdmin4 Compose File
-        </figcaption>
-    </div>
+
+    <figure class="inline-image">
+    <img src="/blog-posts/spring-api-cats/images/postgresql-docker-compose.png" alt="Docker compose file for database and pgadmin.">
+
+      <figcaption>
+          PostgreSQL & pgAdmin4 Compose File.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <hr>
+
+    <br>
 
     <h2>
         A <code>POST</code> Request in Spring
@@ -111,16 +115,18 @@
         Below you can see an infographic I sketched using <a href="https://obsidian.md/" target="_blank">Obsidian</a> and <a href="https://excalidraw.com/">Excalidraw</a> that showcases relationships between classes of code that I find useful in order to understand what exactly is going on when there is a POST request to create a new <code>Cat</code>. We'll take a closer look as there's a lot of stuff going on behind the scenes.
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/code-infographic-full.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/code-infographic-full.png" alt="Program classes and their relationships.">
-            </a>
-        </figure> 
-        <figcaption>
-            Controller, Service, DTO and Mapper.
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/code-infographic-full.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/code-infographic-full.png" alt="Program classes and their relationships.">
+      </a>
+      <figcaption>
+          Controller, Service, DTO and Mapper.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <ul>
         <li>
@@ -138,16 +144,18 @@
         The <code>.createCat()</code> controller method has an annotation of <code>@Valid</code> that triggers Validation. Validation of what though? Let's dive into the <code>CatRequest</code> record and see what's in there and how validation works!    
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/cat-request-record.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/cat-request-record.png" alt="A snippet showing a record java class.">
-            </a>
-        </figure> 
-        <figcaption>
-            <code>CatRequest</code> Record Class with Validation.
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/cat-request-record.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/cat-request-record.png" alt="A snippet showing a record java class.">
+      </a>
+      <figcaption>
+          <code>CatRequest</code> Record Class with Validation.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <ul>
         <li>When a request is being made by the user to create a <code>Cat</code>, we want to validate three (3) things.</li>
@@ -157,16 +165,18 @@
         <li>Now let's get back to the controller.</li>
     </ul>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/cat-controller.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/cat-controller.png" alt="Controller">
-            </a>
-        </figure> 
-        <figcaption>
-            <code>CatController</code> class
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/cat-controller.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/cat-controller.png" alt="Controller class">
+      </a>
+      <figcaption>
+          <code>CatController</code> class
+      </figcaption>
+    </figure>
+
+    <br>
 
     <ul>
         <li>
@@ -186,16 +196,18 @@
         </li>
     </ul>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/cat-service.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/cat-service.png" alt="Service">
-            </a>
-        </figure> 
-        <figcaption>
-            <code>CatService</code> class
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/cat-service.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/cat-service.png" alt="Service class">
+      </a>
+      <figcaption>
+          <code>CatService</code> class.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <ul>
         <li>
@@ -216,16 +228,18 @@
         Since the Service layer has two (2) methods being used to map a request into an entity and an entity to a response let's take a look at those two methods as well.
     </p>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/cat-mapper.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/cat-mapper.png" alt="Mapper">
-            </a>
-        </figure> 
-        <figcaption>
-            <code>CatMapper</code> class
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/cat-mapper.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/cat-mapper.png" alt="Mapper class">
+      </a>
+      <figcaption>
+          <code>CatMapper</code> class.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <ul>
         <li>
@@ -306,16 +320,18 @@
         </li>
     </ul>
 
-    <div class="post-image">
-        <figure> 
-            <a href="/blog-posts/spring-api-cats/images/httpie-api-testing.png" target="_blank">
-                <img src="/blog-posts/spring-api-cats/images/httpie-api-testing.png" alt="A program that is being used to test an API.">
-            </a>
-        </figure> 
-        <figcaption>
-            HTTPie API Testing
-        </figcaption>
-    </div>
+    <br>
+
+    <figure class="inline-image">
+      <a href="/blog-posts/spring-api-cats/images/httpie-api-testing.png" target="_blank">
+          <img src="/blog-posts/spring-api-cats/images/httpie-api-testing.png" alt="A program that is being used to test an API.">
+      </a>
+      <figcaption>
+          HTTPie API Testing.
+      </figcaption>
+    </figure>
+
+    <br>
 
     <p>
         As you can see the <code>POST</code> request on <code>/api/v1/cats</code> responds with the new <code>Cat</code> we have created!
@@ -362,6 +378,8 @@
     <p>
         That's all folks. Thanks for reading!
     </p>
+
+    <hr>
 
     <div class="back-link">
         <a href="/index.html">Back</a>
