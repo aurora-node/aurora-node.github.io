@@ -74,10 +74,22 @@ header {
 }
 
 @media (max-width: 600px) {
+
   header,
   .container {
     padding: 20px;
   }
+
+  /* Smaller font for nav. Fits even the A55. */
+  .navbar {
+    font-size: 24px;
+  }
+
+  /* Centered Footer `p` for Mobiles. */
+  footer p {
+    text-align: center;
+  }
+  
 }
 
 /* Inline images same column width as paragraphs, code blocks and block quotes. */
@@ -167,12 +179,12 @@ hr {
 /* Smaller centered hr line for smaller (phone) screens. */
 @media (max-width: 600px) {
   hr {
-  border: none;
-  height: 1px;
-  width: 20px;
-  background-color: #d0361c;
-  margin: 20px auto;
-  opacity: 0.3;
+    border: none;
+    height: 1px;
+    width: 20px;
+    background-color: #d0361c;
+    margin: 20px auto;
+    opacity: 0.3;
   }
 }
 
